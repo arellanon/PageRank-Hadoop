@@ -1,0 +1,8 @@
+1 - inicio: Thu Feb 8 01:59:01 UTC 2018
+1 - fin: Thu Feb 8 02:07:08 UTC 2018 - duracion: 487
+1 - inicio: Thu Feb 8 02:13:28 UTC 2018
+1 - fin: Thu Feb 8 02:20:40 UTC 2018 - duracion: 432
+1 - inicio: Thu Feb 8 03:24:57 UTC 2018
+1 - fin: Thu Feb 8 03:31:52 UTC 2018 - duracion: :415-*60
+1 - inicio: Thu Feb 8 03:48:11 UTC 2018
+1 - fin: Thu Feb 8 03:55:34 UTC 2018 - duracion: 7:23
