@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-./hadoop-run.sh grafos/web-BerkStan.txt
-#./hadoop-run.sh grafos/web-Google.txt
-#./hadoop-run.sh grafos/web-NotreDame.txt
-#./hadoop-run.sh grafos/web-Stanford.txt
+./hadoop-run-mapper.sh grafos/web-BerkStan.txt 6
+./hadoop-run-mapper.sh grafos/web-Google.txt 6
+./hadoop-run-mapper.sh grafos/web-NotreDame.txt 6
+./hadoop-run-mapper.sh grafos/web-Stanford.txt 6

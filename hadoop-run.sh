@@ -5,16 +5,21 @@ nro_map=$2
 input_file=$(basename "$input")
 
 #Se genera archivo temporal de values
-rm tmp_values log_$input_file
+rm tmp_values
 touch tmp_values
-hadoop fs -rm tmp_values resultado_$input_file
+hadoop fs -rm tmp_values resultado_$input_file_m$nro_map
 hadoop fs -put tmp_values
-
+echo ............................................... >> log_$input_file
+echo $input_file - mapper: $nro_map >> log_$input_file
+echo ............................................... >> log_$input_file
+totTimeIncio=$(date +%s)
 for i in `seq 1 $times`
 do
-	echo $i - $input_file
+	echo interacion: $i
+	echo ............................................... >> log_$input_file
+	echo interacion: $i - $input_file >> log_$input_file 
+	echo ............................................... >> log_$input_file
 	hadoop fs -rm -r tmp tmp2
-
 	timeIncio=$(date +%s)
 	echo $i - inicio: $(date) >> log_$input_file
 
@@ -42,6 +47,12 @@ do
 	duracion=$((($timeFin-$timeIncio)))
 	min=$(($duracion/60))
 	seg=$(($duracion-(min*60)))
-	echo $i - fin:    $(date) - duracion: $min:$seg   >> log_$input_file
+	echo $i - fin:    $(date)  >> log_$input_file
+	echo duracion: $min:$seg   >> log_$input_file
 done
-hadoop fs -mv tmp_values resultado_$input_file
+totTimeFin=$(date +%s)
+totDuracion=$((($totTimeFin-$totTimeIncio)))
+totMin=$(($totDuracion/60))
+totSeg=$(($totDuracion-(totMin*60)))
+echo Con $nro_map mapper - duracion total: $totMin:$totSeg   >> log_$input_file
+hadoop fs -mv tmp_values resultado_$input_file_m$nro_map
