@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
-times=20
 input=$1
 nro_map=$2
+times=$3
 input_file=$(basename "$input")
 
 #Se genera archivo temporal de values
 rm tmp_values
 touch tmp_values
-hadoop fs -rm tmp_values resultado_$input_file_m$nro_map
+hadoop fs -rm tmp_values resultado-m$nro_map-$input_file
 hadoop fs -put tmp_values
 echo ............................................... >> log_$input_file
 echo $input_file - mapper: $nro_map >> log_$input_file
@@ -55,4 +55,4 @@ totDuracion=$((($totTimeFin-$totTimeIncio)))
 totMin=$(($totDuracion/60))
 totSeg=$(($totDuracion-(totMin*60)))
 echo Con $nro_map mapper - duracion total: $totMin:$totSeg   >> log_$input_file
-hadoop fs -mv tmp_values resultado_$input_file_m$nro_map
+hadoop fs -mv tmp_values resultado-m$nro_map-$input_file
