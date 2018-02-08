@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 times=20
 input=$1
+nro_map=$2
 input_file=$(basename "$input")
 
 #Se genera archivo temporal de values
@@ -18,7 +19,7 @@ do
 	echo $i - inicio: $(date) >> log_$input_file
 
 #	hadoop jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming-2.8.2.jar \
-	hadoop jar /usr/lib/hadoop-mapreduce/hadoop-streaming.jar -D mapred.reduce.tasks=1 \
+	hadoop jar /usr/lib/hadoop-mapreduce/hadoop-streaming.jar -D mapred.map.tasks=$nro_map -D mapred.reduce.tasks=1 \
         	-file src \
 		-mapper "src/sortMapper.py" \
 		-reducer "src/sortReducer.py" \
@@ -27,7 +28,7 @@ do
 		-output tmp
 
 #	hadoop jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming-2.8.2.jar \
-    	hadoop jar /usr/lib/hadoop-mapreduce/hadoop-streaming.jar -D mapred.reduce.tasks=1 \
+    	hadoop jar /usr/lib/hadoop-mapreduce/hadoop-streaming.jar -D mapred.map.tasks=$nro_map -D mapred.reduce.tasks=1 \
         	-file src \
         	-mapper "src/prMapper.py" \
         	-reducer "src/prReducer.py" \

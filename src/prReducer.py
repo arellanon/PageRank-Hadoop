@@ -3,7 +3,7 @@
 import sys
 #from config import N, alpha
 
-N = 4  # num of nodes
+#N = 4  # num of nodes
 alpha = 0.85
 
 def reducer():
@@ -18,8 +18,8 @@ def reducer():
         else:
             if pre_node:
                 print "%s #%s" % (pre_node, sum)
-            sum = (1 - alpha) / N + alpha * contribute
-#            sum = (1 - alpha) + alpha * contribute
+#            sum = (1 - alpha) / N + alpha * contribute
+            sum = (1 - alpha) + alpha * contribute
             pre_node = node
     if pre_node:  # the last line
         print "%s #%s" % (pre_node, sum)
