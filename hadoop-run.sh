@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-times=1
+times=20
 input=$1
 input_file=$(basename "$input")
 
