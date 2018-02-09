@@ -7,7 +7,7 @@ input_file=$(basename "$input")
 #Se genera archivo temporal de values
 rm tmp_values
 touch tmp_values
-hadoop fs -rm tmp_values resultado-m$nro_work-$input_file
+hadoop fs -rm tmp_values resultado-w$nro_work-$input_file
 hadoop fs -put tmp_values
 echo ............................................... >> log_$input_file
 echo $input_file - worker: $nro_work >> log_$input_file
@@ -57,4 +57,4 @@ totDuracion=$((($totTimeFin-$totTimeIncio)))
 totMin=$(($totDuracion/60))
 totSeg=$(($totDuracion-(totMin*60)))
 echo Con $nro_work worker - duracion total: $totMin:$totSeg   >> log_$input_file
-hadoop fs -mv tmp_values resultado-m$nro_work-$input_file
+hadoop fs -mv tmp_values resultado-w$nro_work-$input_file
