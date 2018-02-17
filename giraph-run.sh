@@ -44,3 +44,4 @@ seg=$(($duracion-(min*60)))
 
 echo fin:    $(date)  >> $log
 echo duracion: $min:$seg   >> $log
+hadoop fs -rm -r input_tmp tmp tmp2

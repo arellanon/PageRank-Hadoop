@@ -10,7 +10,7 @@ log=~/log-hadoop-w-$workers-$input_file
 #Se genera archivo temporal de values
 #rm tmp_values
 #touch tmp_values
-hadoop fs -rm -r output
+hadoop fs -rm -r $output
 hadoop fs -rm -r input_tmp
 hadoop fs -mkdir input_tmp
 
@@ -61,3 +61,4 @@ totMin=$(($totDuracion/60))
 totSeg=$(($totDuracion-(totMin*60)))
 echo Con $workers worker - duracion total: $totMin:$totSeg   >> $log
 hadoop fs -mv input_tmp/tmp_values $output
+hadoop fs -rm -r input_tmp tmp tmp2
