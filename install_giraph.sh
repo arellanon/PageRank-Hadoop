@@ -6,6 +6,8 @@ sudo chown -R nahuel:nahuel giraph/
 echo "export HADOOP_HOME=/usr/lib/hadoop" >> ~/.bashrc
 echo "export GIRAPH_HOME=/usr/local/giraph" >> ~/.bashrc
 source ~/.bashrc
+HADOOP_HOME=/usr/lib/hadoop
+GIRAPH_HOME=/usr/local/giraph
 cd $GIRAPH_HOME
 #Se elimina bug
 rm giraph-block-app-8/src/test/java/org/apache/giraph/block_app/framework/no_vtx/MessagesWithoutVerticesTest.java
