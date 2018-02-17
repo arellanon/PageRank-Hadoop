@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-input=$1
-nro_work=$2
+nro_work=$1
+input=$2
 times=$3
 input_file=$(basename "$input")
 
@@ -23,8 +23,6 @@ do
 	timeIncio=$(date +%s)
 	echo $i - inicio: $(date) >> log_$input_file
 
-#	hadoop jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming-2.8.2.jar \
-#	hadoop jar /usr/lib/hadoop-mapreduce/hadoop-streaming.jar -D mapred.map.tasks=$nro_map -D mapred.reduce.tasks=1 \
 	hadoop jar /usr/lib/hadoop-mapreduce/hadoop-streaming.jar -D mapred.reduce.tasks=1 \
         	-file src \
 		-mapper "src/sortMapper.py" \
@@ -33,8 +31,6 @@ do
 		-input $input \
 		-output tmp
 
-#	hadoop jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming-2.8.2.jar \
-#    	hadoop jar /usr/lib/hadoop-mapreduce/hadoop-streaming.jar -D mapred.map.tasks=$nro_map -D mapred.reduce.tasks=1 \
 	hadoop jar /usr/lib/hadoop-mapreduce/hadoop-streaming.jar -D mapred.reduce.tasks=1 \
         	-file src \
         	-mapper "src/prMapper.py" \
