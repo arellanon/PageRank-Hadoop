@@ -27,6 +27,12 @@ mv web-BerkStan.txt web-BerkStan-head.txt
 cat web-BerkStan-head.txt | tail -n +5 >> web-BerkStan.txt
 rm web-BerkStan-head.txt
 
+#web-Google.txt.gz
+wget http://snap.stanford.edu/data/web-Google.txt.gz
+gzip -d web-Google.txt.gz
+mv web-Google.txt web-Google-head.txt
+cat web-Google-head.txt | tail -n +5 >> web-Google.txt
+rm web-Google-head.txt
+
 #Subimos todos los archivos del folder ~/grafos/
 hadoop fs -put ~/grafos/* grafos/
-
