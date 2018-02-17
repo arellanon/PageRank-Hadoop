@@ -25,7 +25,6 @@ hadoop jar /usr/lib/hadoop-mapreduce/hadoop-streaming.jar -D mapred.reduce.tasks
 	    -mapper "src/sortMapper.py" \
 	    -reducer "src/sortReducer.py" \
 	    -input input_tmp \
-#	    -input $input \
 	    -output tmp
 
 hadoop jar /usr/local/giraph/giraph-examples/target/giraph-examples-with-dependencies.jar org.apache.giraph.GiraphRunner \
