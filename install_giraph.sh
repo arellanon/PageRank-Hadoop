@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-sudo apt-get install bc -y
 sudo apt-get install maven -y
 cd /usr/local/
 sudo git clone https://github.com/apache/giraph.git

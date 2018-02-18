@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+if [ -z "$1" ]; then
+echo "Ingrese nro de workers"
+exit
+fi
 workers=$1
 input=$2
 #times=$3

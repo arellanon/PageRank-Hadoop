@@ -9,7 +9,6 @@ mkdir grafos
 cd ~/grafos
 
 #Descargamos archivos
-:'
 #wikipedia
 wget http://nrvis.com/download/data/web/web-wikipedia_link_it.zip 
 unzip web-wikipedia_link_it.zip
@@ -19,7 +18,8 @@ rm web-wikipedia_link_it.zip
 cat web-wikipedia_link_it.edges | tail -n +2 >> web-wikipedia_link_it.txt
 rm web-wikipedia_link_it.edges
 hadoop fs -put web-wikipedia_link_it.txt grafos/
-'
+
+:'
 #web-BerkStan.txt
 wget http://snap.stanford.edu/data/web-BerkStan.txt.gz
 gzip -d web-BerkStan.txt.gz
@@ -33,6 +33,6 @@ gzip -d web-Google.txt.gz
 mv web-Google.txt web-Google-head.txt
 cat web-Google-head.txt | tail -n +5 >> web-Google.txt
 rm web-Google-head.txt
-
+'
 #Subimos todos los archivos del folder ~/grafos/
 hadoop fs -put ~/grafos/* grafos/
