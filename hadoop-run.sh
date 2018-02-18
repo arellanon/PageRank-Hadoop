@@ -8,8 +8,6 @@ output=/user/nahuel/out-hadoop-w-$workers-$input_file
 log=~/log-hadoop-w-$workers-$input_file
 
 #Se genera archivo temporal de values
-#rm tmp_values
-#touch tmp_values
 hadoop fs -rm -r $output
 hadoop fs -rm -r input_tmp
 hadoop fs -mkdir input_tmp
@@ -26,7 +24,7 @@ do
 	echo ............................................... >> $log
 	echo interacion: $i - $input_file >> $log 
 	echo ............................................... >> $log
-	hadoop fs -rm -r tmp tmp2
+	hadoop fs -rm -r tmp tmp2 tmp3
 	timeIncio=$(date +%s)
 	echo $i - inicio: $(date) >> $log
 
@@ -44,6 +42,21 @@ do
 		-input tmp/part-00000 \
 		-output tmp2
 
+    if [ $i -gt 1 ]; then
+	    hadoop jar /usr/lib/hadoop-mapreduce/hadoop-streaming.jar -D mapred.reduce.tasks=1 \
+        	-file src \
+        	-mapper "src/sortMapper.py" \
+        	-reducer "src/MaxDiff.py" \
+            -input input_tmp/tmp_values \
+		    -input tmp2/part-00000 \
+		    -output tmp3
+
+        delta=`hadoop fs -cat tmp3/part-00000`
+        CONTINUAR=$( echo "$delta>$umbral" | bc )
+        echo $delta
+        echo $CONTINUAR
+    	hadoop fs -rm -r tmp3
+    fi
     #el output es la nueva entrada para la proxima iteracion
 	hadoop fs -rm -r input_tmp/tmp_values
 	hadoop fs -mv tmp2/part-00000 input_tmp/tmp_values

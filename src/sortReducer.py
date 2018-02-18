@@ -4,7 +4,7 @@ import sys
 
 def reducer():
     pre_node = node = peso = resultado = edge = None
-    peso_default = 0.25
+    peso_default = 1
     for line in sys.stdin:
         data = line.strip().split()
         node = data[0]

@@ -10,12 +10,12 @@ def mapper():
 
         node = data[0]
         value = data[1]
+        #agregamos contribucion 0 para el nodo en caso que no tenga aristas entrantes
+        print "%s %s" % (node, 0)
         try:
             count_node = len(data[2])
-            # Do something with item
             for to_node in data[2]:
-                print "%s %s" % (to_node[0], value / count_node)
+                print "%s %s" % (to_node[0], (float(value) / count_node) )
         except IndexError:
             continue
-            # Do something without the item
 mapper()
