@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 workers=$1
 input=$2
-times=$3
+#times=$3
 input_file=$(basename "$input")
+CONTINUAR=1
+umbral=0.1
+i=1
 
 output=/user/nahuel/out-hadoop-w-$workers-$input_file
 log=~/log-hadoop-w-$workers-$input_file
@@ -18,7 +21,8 @@ echo ............................................... >> $log
 echo hadoop - $input_file - worker  $workers         >> $log
 echo ............................................... >> $log
 totTimeIncio=$(date +%s)
-for i in `seq 1 $times`
+#for i in `seq 1 $times`
+while [ $CONTINUAR -eq 1 ]
 do
 	echo iteracion: $i
 	echo ............................................... >> $log
@@ -67,6 +71,8 @@ do
 	seg=$(($duracion-(min*60)))
 	echo $i - fin:    $(date)  >> $log
 	echo duracion: $min:$seg   >> $log
+
+    i=$((i+1))
 done
 totTimeFin=$(date +%s)
 totDuracion=$((($totTimeFin-$totTimeIncio)))
@@ -74,4 +80,4 @@ totMin=$(($totDuracion/60))
 totSeg=$(($totDuracion-(totMin*60)))
 echo Con $workers worker - duracion total: $totMin:$totSeg   >> $log
 hadoop fs -mv input_tmp/tmp_values $output
-hadoop fs -rm -r input_tmp tmp tmp2
+hadoop fs -rm -r input_tmp tmp tmp2 tm3
