@@ -4,6 +4,7 @@ import sys
 
 def mapper():
     for line in sys.stdin:
-        print line.strip()
+	data = line.strip().split()
+        print "%s\t%s" % (data[0],data[1])
 
 mapper()

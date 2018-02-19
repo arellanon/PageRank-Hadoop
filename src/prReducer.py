@@ -9,7 +9,7 @@ def reducer():
     pre_node = node = None
     sum = 0
     for line in sys.stdin:
-        data = line.strip().split()
+        data = line.strip().split("\t")
         node, contribute = data[0], float(data[1])
         if node == pre_node:
             sum += alpha * contribute

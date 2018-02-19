@@ -6,7 +6,7 @@ def reducer():
     pre_node = node = peso = resultado = edge = None
     peso_default = 1
     for line in sys.stdin:
-        data = line.strip().split()
+        data = line.strip().split("\t")
         node = data[0]
         valor = data[1]
         if node == pre_node:
