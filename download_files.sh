@@ -36,7 +36,7 @@ rm web-Google-head.txt
 wget http://konect.uni-koblenz.de/downloads/tsv/zhishi-baidu-relatedpages.tar.bz2
 tar -xjvf zhishi-baidu-relatedpages.tar.bz2
 mv zhishi-baidu-relatedpages/out.zhishi-baidu-relatedpages .
-head out.zhishi-baidu-relatedpages | tail -n +3 >> out.zhishi-baidu-relatedpages.txt
+cat out.zhishi-baidu-relatedpages | tail -n +3 >> out.zhishi-baidu-relatedpages.txt
 rm out.zhishi-baidu-relatedpages
 rm -r zhishi-baidu-relatedpages/
 rm zhishi-baidu-relatedpages.tar.bz2
