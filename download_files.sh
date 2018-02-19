@@ -35,11 +35,11 @@ rm web-Google-head.txt
 '
 wget http://konect.uni-koblenz.de/downloads/tsv/zhishi-baidu-relatedpages.tar.bz2
 tar -xjvf zhishi-baidu-relatedpages.tar.bz2
-mv zhishi-hudong-relatedpages/out.zhishi-hudong-relatedpages .
-rm -r zhishi-hudong-relatedpages/
-rm zhishi-hudong-relatedpages.tar.bz2
-head out.zhishi-hudong-relatedpages | tail -n +3 >> out.zhishi-hudong-relatedpages.txt
-rm out.zhishi-hudong-relatedpages
+mv zhishi-baidu-relatedpages/out.zhishi-baidu-relatedpages .
+head out.zhishi-baidu-relatedpages | tail -n +3 >> out.zhishi-baidu-relatedpages.txt
+rm out.zhishi-baidu-relatedpages
+rm -r zhishi-baidu-relatedpages/
+rm zhishi-baidu-relatedpages.tar.bz2
 
 #Subimos todos los archivos del folder ~/grafos/
 hadoop fs -put ~/grafos/* grafos/
