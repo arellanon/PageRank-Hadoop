@@ -32,7 +32,7 @@ gzip -d web-Google.txt.gz
 mv web-Google.txt web-Google-head.txt
 cat web-Google-head.txt | tail -n +5 >> web-Google.txt
 rm web-Google-head.txt
-'
+
 wget http://konect.uni-koblenz.de/downloads/tsv/zhishi-baidu-relatedpages.tar.bz2
 tar -xjvf zhishi-baidu-relatedpages.tar.bz2
 mv zhishi-baidu-relatedpages/out.zhishi-baidu-relatedpages .
@@ -40,6 +40,10 @@ cat out.zhishi-baidu-relatedpages | tail -n +3 >> out.zhishi-baidu-relatedpages.
 rm out.zhishi-baidu-relatedpages
 rm -r zhishi-baidu-relatedpages/
 rm zhishi-baidu-relatedpages.tar.bz2
+'
+
+wget http://data.dws.informatik.uni-mannheim.de/hyperlinkgraph/2012-08/pld-arc.gz
+gzip -d pld-arc.gz
 
 #Subimos todos los archivos del folder ~/grafos/
 hadoop fs -put ~/grafos/* grafos/
