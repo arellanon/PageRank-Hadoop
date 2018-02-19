@@ -16,6 +16,7 @@ log=~/log-hadoop-w-$workers-$input_file
 
 #Se genera archivo temporal de values
 hadoop fs -rm -r $output
+hadoop fs -mkdir $output
 hadoop fs -rm -r input_tmp
 hadoop fs -mkdir input_tmp
 
@@ -36,18 +37,18 @@ do
 	timeIncio=$(date +%s)
 	echo $i - inicio: $(date) >> $log
 
-	hadoop jar /usr/lib/hadoop-mapreduce/hadoop-streaming.jar -D mapred.reduce.tasks=1 \
+	hadoop jar /usr/lib/hadoop-mapreduce/hadoop-streaming.jar \
         -file src \
 		-mapper "src/sortMapper.py" \
 		-reducer "src/sortReducer.py" \
 		-input input_tmp \
 		-output tmp
 
-	hadoop jar /usr/lib/hadoop-mapreduce/hadoop-streaming.jar -D mapred.reduce.tasks=1 \
+	hadoop jar /usr/lib/hadoop-mapreduce/hadoop-streaming.jar \
     	-file src \
     	-mapper "src/prMapper.py" \
     	-reducer "src/prReducer.py" \
-		-input tmp/part-00000 \
+		-input tmp/part-* \
 		-output tmp2
 
     if [ $i -gt 1 ]; then
@@ -55,8 +56,8 @@ do
         	-file src \
         	-mapper "src/sortMapper.py" \
         	-reducer "src/MaxDiff.py" \
-            -input input_tmp/tmp_values \
-		    -input tmp2/part-00000 \
+            -input input_tmp/part-* \
+		    -input tmp2/part-* \
 		    -output tmp3
 
         delta=`hadoop fs -cat tmp3/part-00000`
@@ -66,8 +67,8 @@ do
     	hadoop fs -rm -r tmp3
     fi
     #el output es la nueva entrada para la proxima iteracion
-	hadoop fs -rm -r input_tmp/tmp_values
-	hadoop fs -mv tmp2/part-00000 input_tmp/tmp_values
+	hadoop fs -rm -r input_tmp/part-*
+	hadoop fs -mv tmp2/part-* input_tmp/
 
 	timeFin=$(date +%s)
 	duracion=$((($timeFin-$timeIncio)))
@@ -83,5 +84,5 @@ totDuracion=$((($totTimeFin-$totTimeIncio)))
 totMin=$(($totDuracion/60))
 totSeg=$(($totDuracion-(totMin*60)))
 echo Con $workers worker - duracion total: $totMin:$totSeg   >> $log
-hadoop fs -mv input_tmp/tmp_values $output
+hadoop fs -mv input_tmp/part-* $output
 hadoop fs -rm -r input_tmp tmp tmp2 tm3
