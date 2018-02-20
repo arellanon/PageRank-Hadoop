@@ -40,10 +40,13 @@ cat out.zhishi-baidu-relatedpages | tail -n +3 >> out.zhishi-baidu-relatedpages.
 rm out.zhishi-baidu-relatedpages
 rm -r zhishi-baidu-relatedpages/
 rm zhishi-baidu-relatedpages.tar.bz2
-'
 
 wget http://data.dws.informatik.uni-mannheim.de/hyperlinkgraph/2012-08/pld-arc.gz
 gzip -d pld-arc.gz
+'
+
+wget https://snap.stanford.edu/data/soc-LiveJournal1.txt.gz
+gzip -d soc-LiveJournal1.txt.gz
 
 #Subimos todos los archivos del folder ~/grafos/
 hadoop fs -put ~/grafos/* grafos/
