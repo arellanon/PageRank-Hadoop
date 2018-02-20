@@ -7,6 +7,7 @@ CONTINUAR=1
 umbral=0.1
 i=1
 #for i in `seq 1 $times`
+totTimeIncio=$(date +%s)
 while [ $CONTINUAR -eq 1 ]
 do  
     timeIncio=$(date +%s)
@@ -23,8 +24,16 @@ do
     rm tmp/values
     mv tmp/values_tmp tmp/values
 	echo '---------'
+	timeFin=$(date +%s)
+	duracion=$((($timeFin-$timeIncio)))
+	min=$(($duracion/60))
+	seg=$(($duracion-(min*60)))
+	echo $i - fin:    $(date)  >> $log
+	echo duracion: $min:$seg   >> $log
     i=$((i+1))
-    timeFin=$(date +%s)
-    duracion=$((($timeFin-$timeIncio)/(60*60*24)))
-	echo $i - fin:    $(date) - duracion: $duracion >> log.txt
 done
+totTimeFin=$(date +%s)
+totDuracion=$((($totTimeFin-$totTimeIncio)))
+totMin=$(($totDuracion/60))
+totSeg=$(($totDuracion-(totMin*60)))
+echo Duracion total: $totMin:$totSeg   >> $log
