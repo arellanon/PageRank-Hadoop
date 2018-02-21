@@ -5,6 +5,6 @@ exit
 fi
 workers=$1
 sudo apt-get install bc -y
-#./install_giraph.sh
+./install_giraph.sh
 ./download_files.sh
 ./project_run.sh $workers
