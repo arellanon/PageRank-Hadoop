@@ -31,7 +31,7 @@ hadoop jar /usr/local/giraph/giraph-examples/target/giraph-examples-with-depende
         -Dmapred.job.tracker=$hostname \
         -libjars /usr/local/giraph/giraph-examples/target/giraph-examples-with-dependencies.jar org.apache.giraph.examples.SimplePageRankComputation \
         -vif org.apache.giraph.io.formats.JsonLongDoubleFloatDoubleVertexInputFormat \
-        -vip tmp/part-00000 \
+        -vip tmp/part-* \
         -vof org.apache.giraph.io.formats.IdWithValueTextOutputFormat \
         -op $output \
         -mc "org.apache.giraph.examples.SimplePageRankComputation\$SimplePageRankMasterCompute" \
