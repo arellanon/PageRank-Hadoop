@@ -20,7 +20,7 @@ hadoop fs -cp $input input_tmp/
 timeIncio=$(date +%s)
 
 echo inicio: $(date) >> $log
-hadoop jar /usr/lib/hadoop-mapreduce/hadoop-streaming.jar \
+hadoop jar /usr/lib/hadoop-mapreduce/hadoop-streaming.jar -D mapred.reduce.tasks=1 \
     	-file src \
 	    -mapper "src/sortMapper.py" \
 	    -reducer "src/sortReducer.py" \
@@ -31,7 +31,7 @@ hadoop jar /usr/local/giraph/giraph-examples/target/giraph-examples-with-depende
         -Dmapred.job.tracker=$hostname \
         -libjars /usr/local/giraph/giraph-examples/target/giraph-examples-with-dependencies.jar org.apache.giraph.examples.SimplePageRankComputation \
         -vif org.apache.giraph.io.formats.JsonLongDoubleFloatDoubleVertexInputFormat \
-        -vip tmp/part-* \
+        -vip tmp/part-00000 \
         -vof org.apache.giraph.io.formats.IdWithValueTextOutputFormat \
         -op $output \
         -mc "org.apache.giraph.examples.SimplePageRankComputation\$SimplePageRankMasterCompute" \
