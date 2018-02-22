@@ -14,14 +14,6 @@ do
 	echo $i - inicio: $(date) >> log.txt
 	#cat tmp/values
 	cat tmp/* | ./src/sortMapper.py | sort | ./src/sortReducer.py | ./src/prMapper.py | sort | ./src/prReducer.py >> tmp/values_tmp
-    :'
-    if [ $i -gt 1 ]; then
-        cat tmp/values tmp/values_tmp | ./src/sortMapper.py | sort | ./src/MaxDiff.py >> delta.txt
-        delta=`cat delta.txt`
-        CONTINUAR=$( echo "$delta>$umbral" | bc )
-    fi
-    rm delta.txt
-    '
     rm tmp/values
     mv tmp/values_tmp tmp/values
 	echo '---------'

@@ -1,0 +1,22 @@
+#Hadoop MapReduce
+#Crea cluster:
+#2
+gcloud dataproc --region us-central1 clusters create cluster-arellanon-2 --subnet default --zone us-central1-a --master-machine-type n1-standard-2 --master-boot-disk-size 32 --num-workers 2 --worker-machine-type n1-standard-1 --worker-boot-disk-size 32 --project tallerlibre2-192622
+
+#4
+gcloud dataproc --region asia-east1 clusters create cluster-arellanon-4b --subnet default --zone asia-east1-a --master-machine-type n1-standard-2 --master-boot-disk-size 32 --num-workers 4 --worker-machine-type n1-standard-1 --worker-boot-disk-size 32 --project tallerlibre2-192622
+
+#6
+gcloud dataproc --region northamerica-northeast1 clusters create cluster-arellanon-6 --subnet default --zone northamerica-northeast1-b --master-machine-type n1-standard-2 --master-boot-disk-size 32 --num-workers 6 --worker-machine-type n1-standard-1 --worker-boot-disk-size 32 --project tallerlibre2-192622
+
+
+#Giraph
+#Crea cluster:
+#2
+gcloud dataproc --region southamerica-east1 clusters create cluster-arellanon-2 --subnet default --zone southamerica-east1-a --master-machine-type n1-highmem-2 --master-boot-disk-size 100 --num-workers 2 --worker-machine-type custom-1-32768-ext --worker-boot-disk-size 100 --project tallerlibre2-192622
+
+#4
+gcloud dataproc --region us-central1 clusters create cluster-arellanon-4 --subnet default --zone us-central1-a --master-machine-type n1-highmem-2 --master-boot-disk-size 100 --num-workers 4 --worker-machine-type custom-1-16384-ext --worker-boot-disk-size 100 --project tallerlibre2-192622
+
+#6
+gcloud dataproc --region northamerica-northeast1 clusters create cluster-arellanon-6 --subnet default --zone northamerica-northeast1-a --master-machine-type n1-highmem-2 --master-boot-disk-size 100 --num-workers 6 --worker-machine-type custom-1-16384-ext --worker-boot-disk-size 100 --project tallerlibre2-192622

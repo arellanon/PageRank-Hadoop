@@ -44,13 +44,13 @@ rm zhishi-baidu-relatedpages.tar.bz2
 
 wget http://data.dws.informatik.uni-mannheim.de/hyperlinkgraph/2012-08/pld-arc.gz
 gzip -d pld-arc.gz
-
+'
 
 wget https://snap.stanford.edu/data/soc-LiveJournal1.txt.gz
 gzip -d soc-LiveJournal1.txt.gz
 mv soc-LiveJournal1.txt soc-LiveJournal1-head.txt
 cat soc-LiveJournal1-head.txt | tail -n +5 >> soc-LiveJournal1.txt
 rm soc-LiveJournal1-head.txt
-'
+
 #Subimos todos los archivos del folder ~/grafos/
 hadoop fs -put ~/grafos/* grafos/
