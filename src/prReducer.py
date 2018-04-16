@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # encoding: utf-8
 import sys
-#from config import N, alpha
+from config import N, alpha
 
-alpha = 0.85
+#alpha = 0.85
 
 def reducer():
     pre_node = node = None
@@ -17,7 +17,7 @@ def reducer():
         else:
             if pre_node:
                 print "%s #%s" % (pre_node, sum)
-            sum = (1 - alpha) + alpha * contribute
+            sum = (1 - alpha) / N + alpha * contribute
             pre_node = node
     if pre_node:  # ultima linea
         print "%s #%s" % (pre_node, sum)
