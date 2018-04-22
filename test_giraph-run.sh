@@ -36,8 +36,9 @@ hadoop jar /usr/local/giraph/giraph-examples/target/giraph-examples-with-depende
         -vof org.apache.giraph.io.formats.IdWithValueTextOutputFormat \
         -op $output \
         -mc "org.apache.giraph.examples.SimplePageRankComputation\$SimplePageRankMasterCompute" \
-        -ca giraph.SplitMasterWorker=false -w $workers
-
+        -ca giraph.SplitMasterWorker=false  \
+        -ca giraph.maxNumberOfSupersteps=10 \
+        -w $workers
 
 timeFin=$(date +%s)
 duracion=$((($timeFin-$timeIncio)))

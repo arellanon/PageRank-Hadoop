@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 sudo apt-get install maven -y
 cd /usr/local/
-sudo git clone https://github.com/apache/giraph.git
+#sudo git clone https://github.com/apache/giraph.git
+sudo git clone https://github.com/arellanon/giraph
 sudo chown -R nahuel:nahuel giraph/
 echo "export HADOOP_HOME=/usr/lib/hadoop" >> ~/.bashrc
 echo "export GIRAPH_HOME=/usr/local/giraph" >> ~/.bashrc

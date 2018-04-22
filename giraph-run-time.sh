@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 workers=$1
 input=$2
+times=$3
 input_file=$(basename "$input")
 hostname=cluster-arellanon-$workers-m
 output=/user/nahuel/out-giraph-w-$workers-$input_file
@@ -36,6 +37,7 @@ hadoop jar /usr/local/giraph/giraph-examples/target/giraph-examples-with-depende
         -op $output \
         -mc "org.apache.giraph.examples.SimplePageRankComputation\$SimplePageRankMasterCompute" \
         -ca giraph.SplitMasterWorker=true  \
+        -ca giraph.maxNumberOfSupersteps=$times \
         -w $workers
 
 timeFin=$(date +%s)
