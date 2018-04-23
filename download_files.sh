@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 #Generamos folder grafos/ en hdfs
+hadoop fs -mkdir /user/nahuel
 hadoop fs -rm -r grafos/
 hadoop fs -mkdir grafos/
 cd ~
