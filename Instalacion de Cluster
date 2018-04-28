@@ -25,3 +25,12 @@ gcloud dataproc --region northamerica-northeast1 clusters create cluster-arellan
 
 #nuevo proyecto
 gcloud dataproc --region northamerica-northeast1 clusters create cluster-arellanon-6 --subnet default --zone northamerica-northeast1-a --master-machine-type n1-highmem-2 --master-boot-disk-size 100 --num-workers 6 --worker-machine-type custom-1-16384-ext --worker-boot-disk-size 100 --project final-taller-ii
+
+
+
+gcloud dataproc --region southamerica-east1 clusters create cluster-f2cf --subnet default --zone "" --master-machine-type n1-standard-4 --master-boot-disk-size 500 --num-workers 2 --worker-machine-type n1-standard-4 --worker-boot-disk-size 500 --project taller-ii-202623
+
+
+
+#nuevo proyecto rosa
+gcloud dataproc --region northamerica-northeast1 clusters create cluster-arellanon-6 --subnet default --zone northamerica-northeast1-a --master-machine-type n1-highmem-2 --master-boot-disk-size 100 --num-workers 6 --worker-machine-type custom-1-16384-ext --worker-boot-disk-size 100 --project taller-ii-202623

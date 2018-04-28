@@ -35,17 +35,17 @@ do
 
 	hadoop jar /usr/lib/hadoop-mapreduce/hadoop-streaming.jar \
         	-file src \
-		-mapper "src/sortMapper.py" \
-		-reducer "src/sortReducer.py" \
-		-input input_tmp \
-		-output tmp
+		    -mapper "src/sortMapper.py" \
+		    -reducer "src/sortReducer.py" \
+		    -input input_tmp \
+		    -output tmp
 
 	hadoop jar /usr/lib/hadoop-mapreduce/hadoop-streaming.jar \
     		-file src \
     		-mapper "src/prMapper.py" \
     		-reducer "src/prReducer.py" \
-		-input tmp/part-* \
-		-output tmp2
+		    -input tmp/part-* \
+		    -output tmp2
 
 	#el output es la nueva entrada para la proxima iteracion
 	hadoop fs -rm -r input_tmp/part-*
