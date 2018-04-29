@@ -10,13 +10,13 @@ do
     echo $i - workers: $workers
     if [ "$i" == "grafos/web-wikipedia_link_it.txt" ]
     then
-        iter=49
+        iter=75
         nodes=2790239
     else
-        iter=51
+        iter=49
         nodes=4847571
     fi
     ./config.sh $nodes
-#    ./hadoop-run.sh $workers $i
-#    ./giraph-run.sh $workers $i
+    ./giraph-run-time.sh $workers $i $iter
+    ./hadoop-run-time.sh $workers $i $iter
 done
