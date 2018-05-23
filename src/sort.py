@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 # encoding: utf-8
 import sys
+import argparse
 import operator
 
-def reducer():
+def main(rank):
     max_node = node = valor = max_valor = None
     lista={}
     for line in sys.stdin:
@@ -16,9 +17,15 @@ def reducer():
         lista[node]=float(valor)
 
     if lista != None :
-        resultado = sorted(lista.items(), key=operator.itemgetter(1))
-        resul = resultado[-10:] 
+        resultado = sorted(lista.items(), key=operator.itemgetter(1), reverse=True)
+        resul = resultado[:rank]
+        i=1
         for keys,values in resul :
-            print keys, values
+            print i,'#', keys, values
+            i+=1
 
-reducer()
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Ordena ranking.')
+    parser.add_argument('--rank', type=int, default='10', help='N° ranking a mostrar')
+    args = parser.parse_args()
+    main(args.rank)
